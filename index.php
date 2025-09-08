@@ -1,3 +1,9 @@
+<?php
+require_once "repositories/UserRepository.php";
+
+$userRepo = new UserRepository();
+$users = $userRepo->getAll();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,20 +33,22 @@
                         </tr>
                     </thead>
                     <tbody class="table-group-divider">
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                            <td>
-                                <button type="button" class="btn btn-info">
-                                    <i class="bi bi-eye"></i> View</button>
-                                <button type="button" class="btn btn-primary">
-                                    <i class="bi bi-pen"></i> Update</button>
-                                <button type="button" class="btn btn-danger">
-                                    <i class="bi bi-trash"></i> Delete</button>
-                            </td>
-                        </tr>
+                        <?php foreach ($users as $user): ?>
+                            <tr>
+                                <td><?= htmlspecialchars($user->id); ?></td>
+                                <td><?= htmlspecialchars($user->name); ?></td>
+                                <td><?= htmlspecialchars($user->email); ?></td>
+                                <td><?= htmlspecialchars($user->address); ?></td>
+                                <td>
+                                    <button type="button" class="btn btn-info">
+                                        <i class="bi bi-eye"></i> View</button>
+                                    <button type="button" class="btn btn-primary">
+                                        <i class="bi bi-pen"></i> Update</button>
+                                    <button type="button" class="btn btn-danger">
+                                        <i class="bi bi-trash"></i> Delete</button>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
