@@ -24,7 +24,7 @@ class UserRepository
 
     public function findById($id)
     {
-        $stmt = $this->db->prepare("SELECT * FROM user WHERE id = ? ");
+        $stmt = $this->db->prepare("SELECT * FROM users WHERE id = ? ");
         $stmt->execute([$id]);
         return $stmt->fetchObject("User");
     }
